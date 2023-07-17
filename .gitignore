@@ -47,3 +47,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# ignore file with personal earthdata login info
+earthdata-login-info.R
