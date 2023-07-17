@@ -198,5 +198,4 @@ extract(rast_ts, polys) %>%
 # next script: estimating NDVI on other days for kelowna
 rast_ts %>%
   crop(kelowna) %>%
-  writeRaster('data/modis-ndvi-rasters/kelowna-ndvi.tif')
-
+  writeRaster('data/modis-ndvi-rasters/kelowna-ndvi.tif', overwrite = TRUE)

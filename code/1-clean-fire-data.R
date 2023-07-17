@@ -12,7 +12,7 @@ fires <- read_sf('data/BC-Government-data/fire-perimeters/H_FIRE_PLY_polygon.shp
 
 # provincial shapefiles ----
 # canadian provinces
-ca <- st_geometry(canadianmaps::PROV) %>% #geometry only; drop attributes
+ca <- st_geometry(canadianmaps::PROV) %>% # geometry only; drop attributes
   st_transform(st_crs(fires)) # use Albers projection
 
 # bc shapefile
@@ -68,7 +68,7 @@ centers <- st_geometry(fires) %>% # only keep geometry; drop attributes
   st_centroid() # calculate centroids
 
 if(! dir.exists('data/fire-centers')) dir.create('data/fire-centers')
-st_write(centers, 'data/fire-centers/fire-centers.shp')
+st_write(centers, 'data/fire-centers/fire-centers.shp', append = FALSE)
 
 ggplot() +
   geom_sf(data = bc, fill = 'white', color = 'black') +
@@ -134,7 +134,7 @@ ggplot() +
                                          color = 'grey'))
 
 # tedious data cleaning is important but beyond the scope of this workshop
-d <- filter(d, is.na(ha_id))
+d <- filter(d, ! is.na(ha_id))
 
 # add health authority information
 d <- left_join(d,

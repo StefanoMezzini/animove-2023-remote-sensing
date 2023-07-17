@@ -32,7 +32,7 @@ ok <-
   st_as_sf() %>%
   st_set_crs('+proj=longlat')
 plot(ok, col = 'cornflowerblue', axes = TRUE)
-st_write(ok, 'data/okanagan-lake.shp')
+st_write(ok, 'data/okanagan-lake.shp', append = FALSE)
 
 d <- rast_ts %>%
   mask(ok, inverse = TRUE) %>%
@@ -106,7 +106,7 @@ ggplot(newd) +
   geom_raster(aes(long, lat, fill = elev)) +
   scale_fill_distiller('Elevation (m)', palette = 4)
 
-preds <- mutate(newd, ndvi = predict(m, newdata = ., type = 'response'))
+preds <- mutate(newd, ndvi = predict(m, newdata = newd, type = 'response'))
 
 ggplot(preds) +
   facet_wrap(~ doy) +

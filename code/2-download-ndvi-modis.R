@@ -62,8 +62,9 @@ int <- read_sf('data/BC-Government-data/bc-health-authorities/HLTH_ATH_B_polygon
   st_geometry() %>%
   st_as_sf()
 
+# fails because of different projections!
 r %>%
-  crop(int) %>% # different projections!
+  crop(int) %>%
   # mask(int) %>% # set points outside BC to NA
   plot()
 
