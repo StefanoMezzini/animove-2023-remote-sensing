@@ -1,6 +1,7 @@
 Schedule:
 
-- 09:00-10:30 `1-clean-fire-data.R`
+- 09:00-09:30 Intro presentation
+- 09:30-10:30 `1-clean-fire-data.R`
 - 10:30-11:00 `2-download-ndvi-modis.R`
 - 11:00-11:30 Coffee break
 - 11:30-12:00 `3-extracting-data-from-rasters.R`
