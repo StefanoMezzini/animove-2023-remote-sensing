@@ -50,3 +50,6 @@ rsconnect/
 
 # ignore file with personal earthdata login info
 earthdata-login-info.R
+
+# ignore thumbnail files
+*.db
