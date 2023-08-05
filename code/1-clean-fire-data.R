@@ -4,7 +4,7 @@ library('tidyr')     # for data wrangling
 library('sf')        # for spatial features
 library('lubridate') # makes working with dates smoother
 library('ggplot2')   # for fancy plots
-library('khroma')    # for colorblind-frindly palettes
+library('khroma')    # for colorblind-friendly palettes
 theme_set(theme_bw())
 
 # fire polygons ----
