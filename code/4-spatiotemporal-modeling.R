@@ -14,7 +14,7 @@ rast_ts <- rast('data/modis-ndvi-rasters/kelowna-ndvi.tif')
 # download Digital Elevation Model (DEM)
 # using a high resolution to avoid artifacts during reprojection
 ZOOM <- 8
-(cos(50 * pi/180) * 2 * pi * 6378137) / (256 * 2^ZOOM) # spatial resolution
+(cos(50 * pi/180) * 2 * pi * 6378137) / (256 * 2^ZOOM) # resolution (m)
 dem <- get_elev_raster(rast_ts[[1]], z = ZOOM) %>%
   project(rast_ts[[1]]) # reproject to the NDVI raster resolution
 
