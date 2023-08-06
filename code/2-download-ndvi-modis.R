@@ -38,12 +38,12 @@ MODIStsp(
   end_date = '2014.12.31', # last day with forward processing is 2023.02.17
   spatmeth = 'bbox', # download data within bounding box of BC
   bbox = st_bbox(bc), # bounding box of BC
-  out_pro1jsel = 'User Defined', # use specified projection instead of default
+  out_projsel = 'User Defined', # use specified projection instead of default
   output_proj = '+proj=longlat', # download unprojected raster
   resampling = 'bilinear', # method for resampling raster if changing projection
   delete_hdf = TRUE, # delete HDF files after download is complete
   scale_val = TRUE, # convert from integers to floats within [-1, 1]
-  ts_format = 'R RasterStack', # also save as an R RasterStack as an Rda file
+  ts_format = 'R RasterStack', # also save as an R RasterStack in an Rda file
   out_format = 'GTiff', # output format: 'ENVI' (.hdr) or 'GTiff' (.tif)
   n_retries = 3, # number of times to try again if download fails before aborting
   verbose = TRUE, # print processing messages
