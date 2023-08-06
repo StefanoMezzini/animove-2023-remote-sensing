@@ -49,6 +49,30 @@ MODIStsp(
   verbose = TRUE, # print processing messages
   parallel = TRUE) # use TRUE for automatic number of cores (max 8), or specify
 
+# download a single raster with default projection
+sinu <- '+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +R=6371007.181 +units=m +no_defs'
+MODIStsp(gui = FALSE,
+         out_folder = 'data/sinu-raster',
+         selprod = 'Vegetation_Indexes_16Days_1Km (M*D13A2)',
+         prod_version = '061',
+         bandsel = 'NDVI',
+         sensor = 'Terra',
+         user = .USERNAME,
+         password = .PASSWORD,
+         start_date = '2001.02.18',
+         end_date = '2001.02.18',
+         spatmeth = 'bbox',
+         bbox = st_bbox(st_transform(bc, sinu)), # can't be unprojected!
+         delete_hdf = TRUE,
+         scale_val = TRUE,
+         ts_format = NULL,
+         out_format = 'GTiff',
+         verbose = TRUE)
+
+rast('data/sinu-raster/VI_16Days_1Km_v61/NDVI/MOD13A2_NDVI_2001_049.tif') %>%
+  mask(st_transform(bc, sinu)) %>%
+  plot()
+
 # check rasters ----
 r <- rast('data/modis-ndvi-rasters/VI_16Days_1Km_v61/NDVI/MOD13A2_NDVI_2012_001.tif')
 plot(r)
