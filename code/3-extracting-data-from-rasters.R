@@ -9,6 +9,11 @@ library('terra')     # for rasters
 library('ggplot2')   # for fancy plots
 theme_set(theme_bw())
 
+#' in this script, we use `terra::extract()`. If you need to extract large 
+#' amounts of data from raster stacks, see `exactextractr::exact_extract()`:
+#' https://tmieno2.github.io/R-as-GIS-for-Economists/extract-speed.html
+
+# BC Albers projection
 bc_albers <- 'EPSG:3005'
 
 # fires with 2013 health authority population data (no spatial cropping)
