@@ -1,3 +1,5 @@
+Alternative short link to GitHub repo: tinyurl.com/2023-animove-rs
+
 Schedule:
 
 - 09:00-09:30 Intro presentation
