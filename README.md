@@ -1,4 +1,4 @@
-Alternative short link to GitHub repo: tinyurl.com/2023-animove-rs
+Alternative short link to GitHub repo: [tinyurl.com/2023-animove-rs](tinyurl.com/2023-animove-rs)
 
 Schedule:
 
