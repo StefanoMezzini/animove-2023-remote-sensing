@@ -1,3 +1,6 @@
+#' see `getSpatialData::get_products()` to see list of available products
+#' for a given area and time period
+
 # see https://rspatialdata.github.io/vegetation.html for example code and more info
 #' install `rgeoboundaries` with `remotes::install_github('wmgeolab/rgeoboundaries')`
 #' install `MODIStsp` with `remotes::install_github('ropensci/MODIStsp')`

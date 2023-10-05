@@ -73,7 +73,7 @@ View(arts_ts)
 
 # convert to a long tibble
 arts_ts <- extract(rast_ts, arts) %>%
-  pivot_longer(- ID, values_to = 'ndvi', names_to = 'date') %>%
+  pivot_longer(cols = - ID, values_to = 'ndvi', names_to = 'date') %>%
   select(-ID) %>% # unnecessary column
   mutate(date = substr(date, nchar('MOD13A2_NDVI_x'), nchar(date)) %>%
            as.Date(format = '%Y_%j'))
@@ -131,7 +131,7 @@ rast_ts[[9]] %>%
   crop(kelowna) %>%
   mask(kelowna) %>%
   project('EPSG:32610') %>%
-  plot(main = 'BC UTM')
+  plot(main = 'UTM 13')
 
 # methods for interpolating values when reprojecting ----
 ndvi_pal <- colorRampPalette(c('darkblue', 'dodgerblue', '#744700', '#d9bb94',

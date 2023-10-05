@@ -55,7 +55,7 @@ d <- mutate(d, ndvi = predict(m_ndvi, newdata = d, type = 'response'))
 plot(ndvi ~ timestamp, d)
 
 # do altitude and NDVI affect the animal's spatial needs?
-if(! file.exists('models/movemen-models.rds')) {
+if(! file.exists('models/movement-models.rds')) {
   periods <- mutate(d,
                     quarter = lubridate::quarter(timestamp), # ~ season
                     individual.local.identifier = paste(year, quarter)) %>%

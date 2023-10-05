@@ -59,12 +59,13 @@ ctrl <-
 m <-
   bam(
     (ndvi + 1) / 2 ~
-      s(elev, bs = 'tp', k = 3) + # thin plate regression splines (default)
-      s(doy, bs = 'cc', k = 10) + # cubic regression splines
+      s(elev, bs = 'tp', k = 5) + # thin plate regression splines (default)
+      s(doy, bs = 'cc', k = 25) + # cubic regression splines
       s(long, lat, bs = 'ds', k = 100) + # 2D splines
       ti(elev, doy, k = c(3, 5), bs = c('cr', 'cc')),
-    family = betar,
+    family = betar(link = 'logit'),
     data = d,
+    subset = year == 2013,
     method = 'fREML',
     discrete = TRUE,
     knots = list(doy = c(0.5, 366.5)),
@@ -80,7 +81,7 @@ saveRDS(m, 'models/kelowna-ndvi-bam.rds')
 
 # predict from the model
 newd_rast <-
-  expand_grid(long = seq(min(d$long), max(d$long), length.out = 200),
+  expand_grid(long = seq(min(d$long), max(d$long), length.out = 500),
               lat = seq(min(d$lat), max(d$lat), length.out = 200),
               layer = 1) %>% # necessary to create raster
   rast(crs = '+proj=longlat') %>%
@@ -89,13 +90,10 @@ newd_rast <-
 plot(newd_rast)
 
 newd <-
-  as.data.frame(newd_rast, xy = TRUE) %>%
-  select(-layer) %>%
-  left_join(get_elev_raster(newd_rast, z = 12) %>%
-              project(newd_rast) %>%
-              as.data.frame(xy = TRUE) %>%
-              rename(elev = 3),
-            by = c('x', 'y')) %>%
+  get_elev_raster(newd_rast, z = 12) %>%
+  project(newd_rast) %>%
+  as.data.frame(xy = TRUE) %>%
+  rename(elev = 3) %>%
   rename(long = x, lat = y) %>%
   mutate(dates = list(tibble(doy = round(seq(1, 365, length.out = 9)),
                              year = 2013))) %>%

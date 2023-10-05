@@ -155,3 +155,4 @@ d %>%
   slice(1) %>% # take first row for each ha
   arrange(ha_id) %>%
   write.csv(file = 'data/health-authority-data.csv', row.names = FALSE)
+read.csv('data/health-authority-data.csv') # check
